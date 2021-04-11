@@ -1,47 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Anggota Keluarga</title>
+    <title>Pendaftaran pegawai | kantor Coding</title>
 </head>
+
 <body>
+    <header>
+        <h3>Pendaftaran pegawai baru</h3>
+        <h1>kantor coding</h1>
+    </header>
 
-<?php foreach ($anggota_keluarga = ["papa", "ibu", "kakak", "adik"] as $ak){ ?>	
-<br>Nama: <?= $ak; ?>
-<br>Jumlah kata: <?= str_word_count($ak) ?>
-<br>Jumlah huruf: <?= strlen($ak) ?>
-<br>Kebalikan nama: <?= strrev($ak) ?>
+    <h4>Menu</h4>
+    <nav>
+        <ul>
+            <li><a href="form-daftar.php">Daftar pegawai Baru</a></li>
+            <li><a href="list-pegawai.php">semua pegawai terdaftar</a></li>
+        </ul>
 
-<?php
-$teks_awal = trim($ak); //buang spasi di awal dan akhir kalimat.
-$teks_modif = strtolower($teks_awal); //ganti kalimat menjadi huruf kecil semua
-$teks=str_replace(' ','',$teks_modif); //buang spasi yang ada di tengah kata
-$jumlah = strlen($teks); //menghitung jumlah karakter pada variable $teks
+<?php if(isset($_GET['status'])): ?>
+    <p>
+        <?php
+            if($_GET['status'] == 'sukses'){
+                echo "Pendaftaran pegawai baru berhasil!";
+            } else {
+                echo "Pendaftaran gagal!";
+            }
+        ?>
+    </p>
+<?php endif; ?>
 
-//substr_count adalah fungsi menghitung jumlah huruf/kalimat
-$a = substr_count($teks, "a"); //hitung jumlah huruf “a”
-$i = substr_count($teks, "i"); //hitung jumlah huruf “i”
-$u = substr_count($teks, "u"); //hitung jumlah huruf “u”
-$e = substr_count($teks, "e"); //hitung jumlah huruf “e”
-$o = substr_count($teks, "o"); //hitung jumlah huruf “o”
-
-$vocal = $a+$i+$u+$e+$o; //hitung total jumlah huruf vocal
-$konsonan = $jumlah - $vocal;
-
-echo "Kalimat \"".$teks_awal."\" memiliki :" ;
-
-echo "Jumlah karakter = $jumlah ";
-
-echo "jumlah huruf vocal = $vocal ";
-
-echo "Jumlah huruf kosonan = $konsonan";
-
-?>
-
-<br>
-<?php } 
-
-?>
+    </nav>
 
 
-</body>
+    </body>
 </html>
